@@ -1,9 +1,10 @@
 const Time=require('./Time.js');
-const Hash=require('./Hash.js')
+var fs = require('fs');
 class Day {
-  constructor(startingTime, endingTime) {
+  constructor(dayWeek,startingTime, endingTime) {
     this.startingTime = startingTime;
     this.endingTime = endingTime;
+    this.dayWeek=dayWeek
   }
 }
 
@@ -13,41 +14,38 @@ var lineReader = require('readline').createInterface({
 });
 
 const mapConfig=new Map();
-let i=0;
-let mapWeekday=new Map();
-let mapWeekend=new Map();
+const mapWeekday=new Map();
+const mapWeekend=new Map();
+//initialization of maps
+var array = fs.readFileSync('config.txt').toString().split("\n");
+for(i in array) {
+	console.log(array[i]);
+	let key=array[i].substring(0,5);
+	let value=array[i].slice(array[i].length-7).substring(0,2);
+    if(i==1||i==2||i==3){
+    	mapWeekday.set(key,value);
+    }if(i==5||i==6||i==7){
+    	mapWeekend.set(key,value);
 
-
-//Iterative initialization of the maps
-lineReader.on('line', function (line) {
-  switch (i) {
-  case 1:
-    mapWeekday.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));//sets the given paramenter of the corresponding map to the starting hour and the corresponding hourly wage 
-    break;
-  case 2:
-    mapWeekday.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));
-    break;
-  case 3:
-    mapWeekday.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));
-    break;
-  case 5:
-    mapWeekend.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));
-    break;
-  case 6:
-    mapWeekend.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));
-    break;
-  case 7:
-    mapWeekend.set(line.substring(0,1),line.slice(line.length-6).substring(0,1));
-    break;
-  default:
-    console.log('pass');
+    }
 }
-	i++;
-});
+mapConfig.set('Weekdays',mapWeekday);
+mapConfig.set('Weekend',mapWeekend);
 
-ht.set('Weekdays',mapWeekday);
-ht.set('Weekend',mapWeekend);
 
-const getTimeIntervals=function() {
-	this.startingTime
+console.log(mapConfig);
+const dailyWage=function(argument) {
+	if(this.dayWeek!==6&&this.dayWeek!=7){
+		let keys=mapConfig.get("Weekend").keys();
+		if(this.startingTime.timeIsBetween(keys[0],keys[1])){
+			
+		}if(this.startingTime.timeIsBetween(keys[1],keys[2])){
+
+		}if(this.startingTime.timeIsBetween(keys[2],keys[0])){
+
+		}
+	}
+	else{
+
+	}
 }
