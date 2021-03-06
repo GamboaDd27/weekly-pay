@@ -1,3 +1,9 @@
+class Employee {
+  constructor(days) {
+    this.days=days;
+  }
+}
+
 const dailyWage=function(day){
-	this.day;
+	this.days;
 }
