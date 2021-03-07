@@ -26,7 +26,7 @@ Visit http://localhost:3000/
 
 Use the form in the main page to upload a txt file with the schedules to be processed
 
-![App Screenshot(https://i.imgur.com/UW2O4Hp.png)
+![App Screenshot](https://i.imgur.com/UW2O4Hp.png)
 
 After submitting the form, the page will redirect you to a table with the results
 
