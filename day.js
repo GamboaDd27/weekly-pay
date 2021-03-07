@@ -60,7 +60,7 @@ Day.prototype.dailyWage=function() { //assumes the worker works less than 18 hou
 		}
 	}
 	else{
-	    let keys=mapConfig.get("Weekdays").keys();
+	    let keys=mapConfig.get("Weekdays").keys();	
 	    
 		midNight=new Time("00:00");
 		shiftTime1=new Time(keys.next().value);
@@ -70,7 +70,7 @@ Day.prototype.dailyWage=function() { //assumes the worker works less than 18 hou
 		if(this.startingTime.timeIsBetween(shiftTime1,shiftTime2,this.startingTime)){
 			
 			if(this.endingTime.isBiggerThan(shiftTime2)){
-				wage+=(mapConfig.get("mapWeekday").get(shiftTime1.getTimeString()))*this.startingTime.timeRemaining(shiftTime2,this.startingTime);
+				wage+=(mapConfig.get("Weekdays").get(shiftTime1.getTimeString()))*this.startingTime.timeRemaining(shiftTime2,this.startingTime);
 				let remain=this.endingTime.timeRemaining(this.endingTime,shiftTime2);
 				wage+=(mapConfig.get("Weekdays").get(shiftTime2.getTimeString()))*remain;
 				return wage;

@@ -27,7 +27,7 @@ app.post("/submit-form-post", function(request, response){
     for(i in array) {
       let emp1=new Employee();
       emp1.strInitialize(array[i]);
-      let ans={name:emp1.name,wage:emp1.weeklyWage()};
+      let ans={name:emp1.name,wage:emp1.weeklyWage().toFixed(2)};
     results.push(ans);
     }
   } catch (err) {
