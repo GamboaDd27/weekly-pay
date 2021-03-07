@@ -1,9 +1,17 @@
+const Day=require('./day.js');
+
 class Employee {
-  constructor(days) {
+  constructor(name,days) {
+  	this.name=name;
     this.days=days;
   }
 }
 
-const dailyWage=function(day){
-	this.days;
+Employee.prototype.weeklyWage=function(day){
+	let wage=0;
+	for (const day of this.days) {
+  	wage+=day.dailywage();
+} 
+	return wage;
+
 }

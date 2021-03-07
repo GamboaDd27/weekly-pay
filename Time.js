@@ -4,7 +4,8 @@ class Time {
     var t = timeString.split(":");
     this.hour = parseInt(t[0]);
     this.minutes = parseInt(t[1]);
-    this.isBiggerThan = function(other) { 
+    this.isBiggerThan = function(hour) { 
+    	
         return (this.hour > other.hour) || (this.hour === other.hour) && (this.minutes >= other.minutes);
     };
 }
@@ -18,10 +19,11 @@ Time.prototype.timeRemaining=function(end,check){
 	let ans=0;
 	if(!check.isBiggerThan(end)){
 		ans+=end.hour-check.hour;
-		ans+=Math.abs(end.minutes-check.minutes)/60;
+		ans+=(end.minutes-check.minutes)/60;
+	}if(end.hour==0&&end.minutes==0){
+		ans+=24-check.hour;
+		ans+=(-check.minutes)/60;
 	}
 	return ans;
 }
-
-
 module.exports = Time;

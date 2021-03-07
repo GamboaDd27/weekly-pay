@@ -33,19 +33,77 @@ mapConfig.set('Weekdays',mapWeekday);
 mapConfig.set('Weekend',mapWeekend);
 
 
-console.log(mapConfig);
-const dailyWage=function(argument) {
+
+Day.prototype.dailyWage=function() { //assumes the worker works less than 18 hours a day
+	let wage=0;
+	
 	if(this.dayWeek!==6&&this.dayWeek!=7){
 		let keys=mapConfig.get("Weekend").keys();
-		if(this.startingTime.timeIsBetween(keys[0],keys[1])){
+		midNight=new Time("00:00");
+		shiftTime1=new Time(keys[0]);
+		shiftTime2=new Time(keys[1]);
+		shiftTime3=new Time(keys[2]);
+		if(this.startingTime.timeIsBetween(shiftTime1,shiftTime2)){
 			
-		}if(this.startingTime.timeIsBetween(keys[1],keys[2])){
-
-		}if(this.startingTime.timeIsBetween(keys[2],keys[0])){
-
+			if(this.endingTime.isBiggerthan(shiftTime2)){
+				wage+=(mapConfig.get("Weekend").get(shiftTime1))*this.startingTime.timeRemaining(shiftTime2,this.startingTime);
+				let remain=this.endingTime.timeRemaining(this.endingTime,shiftTime2);
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*remain;
+				return wage;
+			}else{
+				wage+=(mapConfig.get("Weekend").get(shiftTime1))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
+			}
+			
+		}if(this.startingTime.timeIsBetween(shiftTime2,shiftTime3)){
+			
+			if(this.endingTime.isBiggerthan(shiftTime3)){
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*this.startingTime.timeRemaining(shiftTime3,this.startingTime);
+				let remain=this.endingTime.timeRemaining(this.endingTime,shiftTime3);
+				wage+=(mapConfig.get("Weekend").get(shiftTime3))*remain;
+				return wage;
+			}else{
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
+			}
+		}if(this.startingTime.timeIsBetween(shiftTime3,midNight)){
+			wage+=(mapConfig.get("Weekend").get(shiftTime3))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
 		}
 	}
 	else{
-
+	    let keys=mapConfig.get("Weekdays").keys();
+		midNight=new Time("00:00");
+		shiftTime1=new Time(keys[0]);
+		shiftTime2=new Time(keys[1]);
+		shiftTime3=new Time(keys[2]);
+		if(this.startingTime.timeIsBetween(shiftTime1,shiftTime2)){
+			
+			if(this.endingTime.isBiggerthan(shiftTime2)){
+				wage+=(mapConfig.get("Weekend").get(shiftTime1))*this.startingTime.timeRemaining(shiftTime2,this.startingTime);
+				let remain=this.endingTime.timeRemaining(this.endingTime,shiftTime2);
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*remain;
+				return wage;
+			}else{
+				wage+=(mapConfig.get("Weekend").get(shiftTime1))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
+			}
+			
+		}if(this.startingTime.timeIsBetween(shiftTime2,shiftTime3)){
+			
+			if(this.endingTime.isBiggerthan(shiftTime3)){
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*this.startingTime.timeRemaining(shiftTime3,this.startingTime);
+				let remain=this.endingTime.timeRemaining(this.endingTime,shiftTime3);
+				wage+=(mapConfig.get("Weekend").get(shiftTime3))*remain;
+				return wage;
+			}else{
+				wage+=(mapConfig.get("Weekend").get(shiftTime2))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
+			}
+		}if(this.startingTime.timeIsBetween(shiftTime3,midNight)){
+			wage+=(mapConfig.get("Weekend").get(shiftTime3))*this.startingTime.timeRemaining(this.endingTime,this.startingTime);
+				return wage;
+		}
 	}
 }
+module.exports = Day;
