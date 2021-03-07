@@ -1,5 +1,7 @@
 const Time=require('./Time.js');
 var fs = require('fs');
+
+//class declaration
 class Day {
   constructor(dayWeek,startingTime, endingTime) {
     this.startingTime = startingTime;
@@ -19,7 +21,6 @@ const mapWeekend=new Map();
 //initialization of maps
 var array = fs.readFileSync('config.txt').toString().split("\n");
 for(i in array) {
-	console.log(array[i]);
 	let key=array[i].substring(0,5);
 	let value=array[i].slice(array[i].length-7).substring(0,2);
     if(i==1||i==2||i==3){
@@ -37,7 +38,7 @@ mapConfig.set('Weekend',mapWeekend);
 Day.prototype.dailyWage=function() { //assumes the worker works less than 18 hours a day
 	let wage=0;
 	
-	if(this.dayWeek!==6&&this.dayWeek!=7){
+	if(this.dayWeek==6||this.dayWeek==7){
 		let keys=mapConfig.get("Weekend").keys();
 		midNight=new Time("00:00");
 		shiftTime1=new Time(keys[0]);
@@ -106,4 +107,34 @@ Day.prototype.dailyWage=function() { //assumes the worker works less than 18 hou
 		}
 	}
 }
+
+Day.prototype.strInitialize=function(String){
+	this.startingTime=String.substring(2,7);
+	this.endingTime=String.substring(8, 13);
+	switch(String.substring(0,2)){
+		case "MO":
+			this.dayWeek=1;
+			break;
+		case "TU":
+			this.dayWeek=2;
+			break;
+		case "WE":
+			this.dayWeek=3;
+			break;
+		case "TH":
+			this.dayWeek=4;
+			break;
+		case "FR":
+			this.dayWeek=5;
+			break;
+		case "SA":
+			this.dayWeek=6;
+			break;
+		case "SU":
+			this.dayWeek=7;
+			break;
+	}
+}
+
+
 module.exports = Day;
