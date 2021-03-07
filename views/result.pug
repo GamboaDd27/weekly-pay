@@ -1,7 +1,14 @@
 extends base.pug
 
 block content
-	h1.tc.f4.fw6.ph0.mh0=message
+	table(style='width:100%', border='1')
+		tr
+			th Name
+			th Weekly Wage
+		for item in results
+			tr
+				th= item.name
+				th= item.wage
 	form.measure.center.tc(action="/form-post")
 		label.db.fw6.lh-copy.f6 Return to previous page
 		input.b.ph3.pv2.input-reset.ba.b--black.bg-transparent.grow.pointer.f6.dib(type="submit",name="sub", value="Return")

@@ -21,24 +21,19 @@ app.get("/form-post", function(request, response){
 
 
 app.post("/submit-form-post", function(request, response){
-  let emp=new Employee();
-  emp.strInitialize("ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00");
-
-  console.log("la wea es",emp.weeklyWage());
-  let emp1=new Employee();
-  emp1.strInitialize("RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00");
-
-  console.log("la wea es1",emp1.weeklyWage());
+  let results=[];
   try {
     var array = fs.readFileSync(request.body.file).toString().split("\n");
     for(i in array) {
-     // console.log(array[i]);
-     // console.log(i);
+      let emp1=new Employee();
+      emp1.strInitialize(array[i]);
+      let ans={name:emp1.name,wage:emp1.weeklyWage()};
+    results.push(ans);
     }
   } catch (err) {
     console.error(err)
   }
- 
+ return response.render("result", {results: results}); 
 });
 
 
