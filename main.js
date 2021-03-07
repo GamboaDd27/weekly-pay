@@ -1,7 +1,7 @@
 const expres=require("express");
 const bodyParser=require("body-parser");
 const fs = require('fs');
-const Employee=require('./employee.js');
+const Employee=require('./modules/employee.js');
 const app=expres();
 
 //middleware/routing
