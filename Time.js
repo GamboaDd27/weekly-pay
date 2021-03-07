@@ -4,13 +4,13 @@ class Time {
     var t = timeString.split(":");
     this.hour = parseInt(t[0]);
     this.minutes = parseInt(t[1]);
-    this.isBiggerThan = function(hour) { 
-    	
+    this.timeString=timeString;
+}
+}
+    Time.prototype.isBiggerThan=function(other) { 
+
         return (this.hour > other.hour) || (this.hour === other.hour) && (this.minutes >= other.minutes);
     };
-}
-}
-
 Time.prototype.timeIsBetween=function (start, end, check) {
     return (start.hour <= end.hour) ? check.isBiggerThan(start) && !check.isBiggerThan(end)
     : (check.isBiggerThan(start) && check.isBiggerThan(end)) || (!check.isBiggerThan(start) && !check.isBiggerThan(end));    
@@ -25,5 +25,8 @@ Time.prototype.timeRemaining=function(end,check){
 		ans+=(-check.minutes)/60;
 	}
 	return ans;
+}
+Time.prototype.getTimeString=function(){
+	return this.timeString;
 }
 module.exports = Time;

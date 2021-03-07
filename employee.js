@@ -13,6 +13,7 @@ class Employee {
 Employee.prototype.weeklyWage=function(){
 	let wage=0;
 	for (const day of this.days) {
+		console.log(wage, day)
   	wage+=day.dailyWage();
 } 
 	return wage;
