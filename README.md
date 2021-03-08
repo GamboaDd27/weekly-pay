@@ -12,6 +12,8 @@ npm
 
 Run `git clone https://github.com/GamboaDd27/weekly-pay`
 
+Run `cd weekly-pay`
+
 Run `npm install` 
 
 Run `npm start`
@@ -40,6 +42,12 @@ Once each day's wage is calculated, the weekly wage is computed and assigned as 
 Finally, the app dynamically renders a table detailing each employee's name and weekly wage.
 
 The architecture of the solution is a simple Node.js web app that takes advantages of routing to communicate data between different JavaScript classes and to dynamically render the solution in a visual manner.
+
+Unit testing was implemented with mocha and chai.
+
+## Running test
+
+run `npm run test`
 
 ## License
 
