@@ -32,6 +32,8 @@ Use the form in the main page to upload a txt file with the schedules to be proc
 
 After submitting the form, the page will redirect you to a table with the results
 
+An example file is provided in the base directory of this repository, the file "test.txt" can be uploaded to the form to demonstrate the app's functionality
+
 ## Solution approach
 The solution involves creating an Employee object for each entry in the input file, then the corresponding string is converted to a list of days with their own schedules. 
 
