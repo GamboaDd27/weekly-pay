@@ -4,7 +4,8 @@
   "description": "��#\u0000 \u0000w\u0000e\u0000e\u0000k\u0000l\u0000y\u0000-\u0000p\u0000a\u0000y\u0000\r\u0000 \u0000",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,10 @@
   "homepage": "https://github.com/GamboaDd27/weekly-pay#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.3.3",
+    "chai-http": "^4.3.0",
     "express": "^4.17.1",
+    "mocha": "^8.3.1",
     "pug": "^3.0.2"
   }
 }
